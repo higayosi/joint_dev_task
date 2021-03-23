@@ -121,7 +121,8 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  puts user_data.merge(update_data)
+  puts user_data.merge!(update_data)
+  p user_data
   
 end
 
@@ -166,6 +167,18 @@ end
 
 class UserQ17
   # 以下に回答を記載
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+    @gender = params[:gender]
+  end
+  def info
+    puts <<~TEXT
+      名前:#{@name}
+      年齢:#{@age}
+      性別:#{@gender}
+    TEXT
+  end
 
 end
 
@@ -181,7 +194,17 @@ end
 
 class UserQ18
   # 以下に回答を記載
-
+  def initialize(**params)
+    @name = params[:name]
+    @age = params[:age]
+  end
+  def introduce
+    if @age >= 15
+      "こんにちわ、#{@name}と申します。よろしくお願いいたします。"
+    else
+      "はいさいまいど〜#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -195,8 +218,8 @@ end
 
 class Item
   # 以下を修正して下さい
-
-  def initialize(name)
+  attr_reader :name
+  def initialize(name:)
     @name = name
   end
 end
